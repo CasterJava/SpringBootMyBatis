@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springboot.mapper.UserMapper">
+
+<!--查询所有-->
+<select id="users"  resultType="com.springboot.pojo.User">
+
+    select * from t_user;
+
+</select>
+<!--添加-->
+    <insert id="add"  parameterType="com.springboot.pojo.User" >
+ insert into t_user (Id, name )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
+    </insert>
+<!--删除-->
+    <delete id="delete" parameterType="java.lang.Integer" >
+ delete from t_user
+    where Id = #{id,jdbcType=INTEGER}
+    </delete>
+<!--    根据id查询-->
+    <select id="findByid" parameterType="java.lang.Integer" resultType="com.springboot.pojo.User">
+        select
+        *
+        from t_user
+        where Id = #{id,jdbcType=INTEGER}
+    </select>
+<!--    修改-->
+    <update id="update" parameterType="com.springboot.pojo.User" >
+       update t_user
+    set name = #{name,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>
